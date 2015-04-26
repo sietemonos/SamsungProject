@@ -1,0 +1,44 @@
+==================================================================
+Samsung Data Set Analysis
+file: run_analysis.R
+Version 1.0
+Codebook
+==================================================================
+Lizeth Milena López Valero
+Data Science Analysis
+Cleaning and Cleansing Data
+sietemonos@gmail.com
+==================================================================
+
+
+Content:
+
+A. Script variables
+B. Functions
+C. tidydata.txt variables
+
+*****************************************************************
+A. Script variables
+
+dir_path: Path of the script directory
+DIR_DATA: Constant = "UCI HAR Dataset": Samsung data set directory
+FILE_URL: Constant = "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip": URL to download the data set
+
+*****************************************************************
+Functions:
+
+check_script(x, y):
+  # Checks working directory matchs with the script and data directory
+  #
+  # Args: 
+  #   x: Directory path of the source file.
+  #   y: Directory name of the Samsung data set
+  #
+  # Returns:
+  #   TRUE or FALSE
+  
+  # a. Check if Samsung data set is in the project directory
+
+proccess_data():
+  # Applies multiple procedures to clean data, including mergin, subseting,
+  # variable renaming and mean calculations

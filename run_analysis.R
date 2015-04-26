@@ -6,7 +6,10 @@
 ## https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 ## 
 ## Inputs:
-##   
+##   Reads the files with train and test data
+##
+## Outputs:
+##   The tidydata.txt file with the tidy data set of means variables.
 
 library(plyr)
 
