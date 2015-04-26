@@ -25,7 +25,7 @@ DIR_DATA: Constant = "UCI HAR Dataset": Samsung data set directory
 FILE_URL: Constant = "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip": URL to download the data set
 
 *****************************************************************
-Functions:
+B. Functions:
 
 check_script(x, y):
   # Checks working directory matchs with the script and data directory
@@ -42,3 +42,34 @@ check_script(x, y):
 proccess_data():
   # Applies multiple procedures to clean data, including mergin, subseting,
   # variable renaming and mean calculations
+
+********************************************************************
+C. tidydata.txt variables
+
+Activity:  String with the name of activities performed by volunteers.
+Subject: Integer.(1: 30)  Id to identify the Volunteers.
+
+The measurement variables are:
+
+timeBodyAccelerometer-XYZ
+timeGravityAccelerometer-XYZ
+timeBodyAccelerometerJerk-XYZ
+timeBodyGyroscope-XYZ
+timeBodyGyroscopeJerk-XYZ
+timeBodyAccelerometerMagnitude
+timeGravityAccelerometerMagnitude
+timeBodyAccelerometerJerkMagnitude
+timeBodyGyroscopeMagnitude
+timeBodyGyroscopeJerkMagnitude
+frequencyBodyAccelerometer-XYZ
+frequencyBodyAccelerometerJerk-XYZ
+frequencyBodyGyroscope-XYZ
+frequencyBodyAccelerometerMagnitude
+frequencyBodyAccelerometerJerkMagnitude
+frequencyBodyGyroscopeMagnitude
+frequencyBodyGyroscopeJerkMagnitude
+
+
+There is an mean or st indicating its value, like this
+timeGravityAccelerometer-std-Y:  Standard deviation of time gravity accelerometer in Y
+timeGravityAccelerometer-mean-Y:  Mean of time gravity accelerometer in Y
