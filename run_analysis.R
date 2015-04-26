@@ -41,13 +41,9 @@ check_script <- function(x, y){
   }
 }
 
-extract_mean_and_sd <- function(x){
-  # Extracts only the mean and standard deviation for each measurement.
-  filtered_data <<- x[, c(1, 2, grep("mean\\(\\)|std\\(\\)", names(x)))]
-}
-
-merge_data <- function(){
-  # Merges the training and the test sets to create one data set.
+proccess_data <- function(){
+  # Applies multiple procedures to clean data, including mergin, subseting,
+  # variable renaming and mean calculations
   
   # Gets paths for the data main directory and subdirectories test and train.
   data_path <- list.dirs()[which(grepl(DIR_DATA, list.dirs()))[1]]
@@ -81,29 +77,28 @@ merge_data <- function(){
   filtered_data <<- total_data[, c(1, 2, grep("mean\\(\\)|std\\(\\)", 
                                               names(total_data)))]
   
-  al <<- read.table(file.path(data_path, "activity_labels.txt"), header = FALSE)[, 2]
+  # Changes the Activity Labels to a meaningful name
+  al <<- read.table(file.path(data_path, "activity_labels.txt"), header = FALSE)
+  filtered_data$Activity <<- al$V2[match(filtered_data$Activity, al$V1)]
   
-  filtered_data[, 1] <<- sub("1", al[1], filtered_data[, 1])
-  #filtered_data[, 1] <- sub("2", al[2], filtered_data[, 1])
-
-  
+  # Changes the column names for meaninful ones
+  names(filtered_data) <<- gsub("\\(\\)", "", names(filtered_data))
   names(filtered_data) <<- gsub("^t", "time", names(filtered_data))
   names(filtered_data) <<- gsub("^f", "frequency", names(filtered_data))
   names(filtered_data) <<- gsub("Acc", "Accelerometer", names(filtered_data))
   names(filtered_data) <<- gsub("Gyro", "Gyroscope", names(filtered_data))
   names(filtered_data) <<- gsub("Mag", "Magnitude", names(filtered_data))
   names(filtered_data) <<- gsub("BodyBody", "Body", names(filtered_data))
-
-  # quitar paréntesis
+  
+  # Writes the tidy data
+  temp_data <- aggregate(. ~Activity + Subject, filtered_data, mean)
+  tidy_data <<- temp_data[order(temp_data$Activity, temp_data$Subject), ]
+  write.table(tidy_data, file = "tidydata.txt", quote = FALSE, row.name = FALSE)
 }
-
 
 
 if (check_script(data_path, DIR_DATA)) {
-  merge_data()
+  proccess_data()
 } else {
   stop(msg)  # stops execution and sends an error message
 }
-
-#extract_mean_and_sd(total_data)
-#change_activity_labels()
